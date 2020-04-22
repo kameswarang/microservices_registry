@@ -1,4 +1,4 @@
-package kganesh1795.microservice_registry;
+package kganesh1795.microservices_registry;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class MicroserviceRegistryApplicationTests {
+public class MicroservicesRegistryApplicationTests {
 
 	@Test
 	public void contextLoads() {
