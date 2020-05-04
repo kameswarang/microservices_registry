@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.ui.Model;
 
 @RestController
-@CrossOrigin(origins=({"${UBBL_QUERY_SERVICE}"}))
+@CrossOrigin(origins={"${UBBL_QUERY_SERVICE}"})
 @RequestMapping("/start")
 public class IndexRestController {
     @GetMapping
