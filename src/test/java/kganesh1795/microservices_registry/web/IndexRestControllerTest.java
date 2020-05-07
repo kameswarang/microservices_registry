@@ -10,8 +10,10 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.options;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
+
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -19,11 +21,17 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 public class IndexRestControllerTest {
 	@Autowired
 	private MockMvc mockMvc;
-	
+
 	@Test
-	public void get_start_executionTest() throws Exception {
+	public void get_start_returns_response_with_correct_cors_headers() throws Exception {
+		String origin = System.getenv("UBBL_QUERY_SERVICE");
 	    mockMvc.perform(
-	    	get("/start"))
-    	.andDo(print());
+	    	options("/start")
+	    		.header("Origin", origin)
+	    		.header("Access-Control-Request-Method", "GET")
+    		)
+    	.andDo(print())
+    	.andExpect(header().exists("Access-Control-Allow-Origin"))
+    	.andExpect(header().string("Access-Control-Allow-Methods", "GET"));
 	}
 }
